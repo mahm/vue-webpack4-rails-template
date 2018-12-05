@@ -1,0 +1,17 @@
+import Vue from 'vue'
+
+<%
+components = Dir.glob('app/frontend/application/components/*.vue').map do |path|
+  [path.gsub('app/frontend', '..').gsub('.vue', ''), File.basename(path, '.vue')]
+end
+
+components.each do |pair| 
+%>
+import <%= pair.last %> from '<%= pair.first %>'
+<% end %>
+
+export default function() {
+  <% components.each do |_, component_name| %> 
+  Vue.component('<%= component_name %>', <%= component_name %>) 
+  <% end %>
+}

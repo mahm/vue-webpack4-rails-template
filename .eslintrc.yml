@@ -1,0 +1,22 @@
+extends:
+  - airbnb-base
+  - plugin:vue/recommended
+parserOptions:
+  ecmaVersion: 2018
+settings:
+  # NOTE: webpackerで書き換えているaliasが反映されるように
+  import/resolver:
+    webpack:
+      # NOTE: eslintを実行するカレントから見たパス。（プロジェクトルートからの実行が前提）
+      # 絶対パスで指定しようとする場合は、eslintrcをjsフォーマットに書き換えないと難しい。
+      config: 'config/webpack/development.js'
+rules:
+  semi:
+    - error
+    - never
+  'import/no-extraneous-dependencies':
+    devDependencies:
+      - '**/*.stories.js'
+  vue/max-attributes-per-line:
+    - 2
+    - singleline: 3
